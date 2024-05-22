@@ -1,0 +1,4 @@
+[submodule "reinlib"]
+	path = reinlib
+	url = https://github.com/kafues511/ReinLib.git
+	branch = main
