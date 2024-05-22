@@ -6,3 +6,7 @@
 	path = charseg/reinlib
 	url = https://github.com/kafues511/ReinLib.git
 	branch = main
+[submodule "coatnet/reinlib"]
+	path = coatnet/reinlib
+	url = https://github.com/kafues511/ReinLib.git
+	branch = main
