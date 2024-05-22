@@ -2,3 +2,7 @@
 	path = craft/reinlib
 	url = https://github.com/kafues511/ReinLib.git
 	branch = main
+[submodule "charseg/reinlib"]
+	path = charseg/reinlib
+	url = https://github.com/kafues511/ReinLib.git
+	branch = main
