@@ -47,6 +47,7 @@ class CRAFTDataset(Dataset):
         version:int = 0,
     ) -> None:
         self.transform = transforms.Compose([
+            transforms.ToTensor(),
             transforms.Normalize(mean=self.MEAN_NORM, std=self.STD_NORM),
         ])
 
@@ -73,7 +74,9 @@ class CRAFTDataset(Dataset):
         image_path = self.image_paths[index]
         bboxes_path, dratio = self.bboxes_paths[index]
 
-        image = read_image(image_path, ImageReadMode.RGB) / 255.0
+        image = cv2.imread(image_path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         image = self.transform(image)
 
         with open(str(bboxes_path), mode="rb") as f:
