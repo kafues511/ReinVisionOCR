@@ -8,5 +8,6 @@ if __name__ == "__main__":
         #r"log_logs\version_0\checkpoints\last.ckpt",
         #r"..\resources\pretrained\mtlmr3m",
         #r"..\resources\pretrained\msgothic001",
+        #r"..\resources\pretrained\SourceHanSans-Bold",
         "craft",
     )
