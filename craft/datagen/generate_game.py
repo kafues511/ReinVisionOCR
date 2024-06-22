@@ -17,7 +17,7 @@ from reinlib.utility.rein_files import get_paths_in_directories
 from reinlib.utility.rein_image import random_pil_crop, alpha_composite, create_gradient_alpha
 from reinlib.utility.rein_text_draw import draw_simple_text, draw_text_layout, calc_character_bboxes, apply_font_decoration
 
-from datagen.image_generator_base import *
+from datagen.generate_base import *
 
 
 @dataclass
@@ -205,6 +205,7 @@ def generate_game_image(
     text_box_top_alpha:int,
     text_box_bottom_alpha:int,
     canvas_color:Color,
+    is_gaussian_blur:bool,
     is_low_quality_antialias:bool,
     is_debug_enabled:bool,
     output_directory:Path,
@@ -269,7 +270,7 @@ def generate_game_image(
 
             text_alpha[info.bbox_decoration.hwslice] = low_quality_alpha
 
-            if True:
+            if False:
                 cv2.imshow("", np.vstack([alpha, decoration_alpha, low_quality_alpha]))
                 cv2.waitKey()
                 cv2.imshow("", np.zeros_like(alpha))

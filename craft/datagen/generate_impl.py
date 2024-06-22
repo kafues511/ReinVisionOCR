@@ -9,10 +9,10 @@ from reinlib.utility.rein_files import get_paths_in_directories
 from reinlib.utility.rein_text_draw import calc_median_bbox
 from reinlib.utility.rein_generate_config import GenerateConfigBase
 
-from datagen.image_generator_base import *
-from datagen.word_image_generator import *
-from datagen.sentence_image_generator import *
-from datagen.game_image_generator import *
+from datagen.generate_base import *
+from datagen.generate_word import *
+from datagen.generate_sentence import *
+from datagen.generate_game import *
 
 
 class GenerateConfig(GenerateConfigBase):
@@ -51,7 +51,6 @@ class GenerateConfig(GenerateConfigBase):
         shadow_alpha_min:int,
         shadow_alpha_max:int,
         shadow_alpha_step:int,
-
         is_apply_same_alpha:bool,
 
         hue_min:int,
@@ -61,6 +60,8 @@ class GenerateConfig(GenerateConfigBase):
         saturation_min:int,
         saturation_max:int,
         saturation_step:int,
+
+        is_gaussian_blur:bool,
 
         is_low_quality_antialias:bool,
 
@@ -107,6 +108,9 @@ class GenerateConfig(GenerateConfigBase):
         # 色相と彩度の範囲
         self.hue_range = Range(hue_min, hue_max + 1, hue_step)
         self.saturation_range = Range(saturation_min, saturation_max + 1, saturation_step)
+
+        # 縁取りと影付きの透明度をぼかすか
+        self.is_gaussian_blur = is_gaussian_blur
 
         # 低品質アンチエイリアスを使用するか
         self.is_low_quality_antialias = is_low_quality_antialias
@@ -462,6 +466,7 @@ class GenerateConfig(GenerateConfigBase):
                 self.create_word_drawer_parameters(),
                 self.characters,
                 self.character_list_proxy,
+                self.is_gaussian_blur,
                 self.is_low_quality_antialias,
                 self.is_debug_enabled,
             )
@@ -483,6 +488,7 @@ class GenerateConfig(GenerateConfigBase):
                 self.create_sentence_drawer_parameters(),
                 self.characters,
                 self.character_list_proxy,
+                self.is_gaussian_blur,
                 self.is_low_quality_antialias,
                 self.is_debug_enabled,
             )
@@ -507,6 +513,7 @@ class GenerateConfig(GenerateConfigBase):
                 self.game_image_config.random_text_box_top_alpha,
                 self.game_image_config.random_text_box_bottom_alpha,
                 self.game_image_config.canvas_color,
+                self.is_gaussian_blur,
                 self.is_low_quality_antialias,
                 self.is_debug_enabled,
             )

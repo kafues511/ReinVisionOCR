@@ -8,7 +8,7 @@ is_debug_enabled: True
 is_tqdm_enabled: True
 
 # データセットの出力先のディレクトリ
-output_directory: ..\resources\datasets\craft\msgothic\shadow_30
+output_directory: ..\resources\datasets\craft\mtlmr3m\tenshi_sz_medium
 
 # 背景画像のディレクトリ
 background_image_directories: [
@@ -23,7 +23,7 @@ canvas_width: 864
 canvas_height: 416
 
 # フォントとフォントサイズ
-font_path: ..\resources\fonts\msgothic\msgothic001.ttf
+font_path: ..\resources\fonts\mtlmr3m\mtlmr3m.ttf
 font_size: 30
 
 # 文字色 (RGB)
@@ -35,7 +35,7 @@ text_alpha_max: 255
 text_alpha_step: 5
 
 # 縁取りの有効性
-is_outline: False
+is_outline: True
 
 # 縁取りの太さ
 outline_weight: 1
@@ -68,7 +68,7 @@ shadow_alpha_step: 5
 
 # 縁取りと影付きに同じ透明度を適用するか
 # 透明度の範囲は影付き(shadow_alpha_min/max/step)から決定します。
-is_apply_same_alpha: False
+is_apply_same_alpha: True
 
 # 文字色の色相の範囲
 hue_min: 0
@@ -79,6 +79,9 @@ hue_step: 2
 saturation_min: 10
 saturation_max: 40
 saturation_step: 2
+
+# 縁取りや影をぼかすか
+is_gaussian_blur: False
 
 # 低品質アンチエイリアスを有効にするか
 is_low_quality_antialias: False
@@ -233,7 +236,7 @@ word_image_config:
   is_enable: True
 
   # 画像生成数
-  total: 1600
+  total: 400
 
   # n回ごとに括弧を挿入するか
   insert_brackets_every_n_times: 2
@@ -263,7 +266,7 @@ sentence_image_config:
   is_enable: True
 
   # 画像生成数
-  total: 1600
+  total: 400
 
   # 文章の長さ
   # 最小文字数と最大文字数を指定します。
@@ -293,7 +296,7 @@ game_image_config:
   is_enable: True
 
   # 画像生成数
-  total: 1600
+  total: 400
 
   # テキストの長さ
   # 最小文字数と最大文字数を指定します。

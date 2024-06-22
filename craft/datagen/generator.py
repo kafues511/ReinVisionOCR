@@ -4,7 +4,7 @@ from multiprocessing import Manager
 from reinlib.types.rein_stage_type import StageType
 from reinlib.utility.rein_dataset_generator import DatasetGeneratorAbstract
 
-from datagen.image_generator import *
+from datagen.generate_impl import *
 
 
 __all__ = [

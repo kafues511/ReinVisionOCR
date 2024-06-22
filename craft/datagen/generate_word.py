@@ -17,7 +17,7 @@ from reinlib.types.rein_size2d import Size2D
 from reinlib.utility.rein_text_draw import draw_text_layout, draw_simple_text, calc_character_bboxes
 from reinlib.utility.rein_image import random_pil_crop, alpha_composite
 
-from datagen.image_generator_base import *
+from datagen.generate_base import *
 
 
 @dataclass
@@ -76,6 +76,7 @@ def generate_word_image(
     drawer_parameters:tuple[tuple[int, Optional[str], Optional[tuple[str, str]], TextLayout], ...],
     characters:str,
     character_list_proxy:ListProxy,
+    is_gaussian_blur:bool,
     is_low_quality_antialias:bool,
     is_debug_enabled:bool,
     output_directory:Path,
@@ -90,7 +91,7 @@ def generate_word_image(
     text_drawer = ImageDraw.Draw(text_layer)
 
     # 低品質アンチエイリアスの作成には修飾文字を除いたテキストが必要
-    if is_low_quality_antialias:
+    if is_gaussian_blur or is_low_quality_antialias:
         text_alpha_layer = Image.new("L", canvas_size.wh)
         text_alpha_drawer = ImageDraw.Draw(text_alpha_layer)
 
@@ -105,7 +106,7 @@ def generate_word_image(
         debug_layer = np.zeros((*canvas_size.hw, 4), dtype=np.uint8)
 
     # 低品質アンチエイリアス用の透明度情報
-    if is_low_quality_antialias:
+    if is_gaussian_blur or is_low_quality_antialias:
         text_alpha = np.zeros_like(empty_map, np.uint8)
 
     for word_length, custom_text, brackets, text_layout in drawer_parameters:
@@ -137,6 +138,15 @@ def generate_word_image(
         # 文字領域の取得
         calc_character_bboxes(info.text_pos, applied_brackets_word, text_layout.font, text_layout.anchor, text_layout.median_bbox, character_bboxes)
 
+        if is_gaussian_blur:
+            # 修飾を含んだ透明度
+            decoration_alpha = np.array(text_layer.crop(tuple(info.bbox_decoration)))[..., 3]
+
+            # ぼかしを適用
+            decoration_alpha = cv2.GaussianBlur(decoration_alpha, (3, 3), 0)
+
+            text_alpha[info.bbox_decoration.hwslice] = decoration_alpha
+
         # 低品質アンチエイリアスな透明度マップの作成
         if is_low_quality_antialias:
             # 文字修飾を除いたテキスト描画
@@ -146,7 +156,8 @@ def generate_word_image(
             alpha = np.array(text_alpha_layer.crop(tuple(info.bbox_decoration)))
 
             # 修飾を含んだ透明度
-            decoration_alpha = np.array(text_layer.crop(tuple(info.bbox_decoration)))[..., 3]
+            if not is_gaussian_blur:
+                decoration_alpha = np.array(text_layer.crop(tuple(info.bbox_decoration)))[..., 3]
 
             low_quality_alpha = np.zeros_like(alpha, np.uint8)
 
@@ -175,7 +186,7 @@ def generate_word_image(
     background_layer = np.array(background_layer)
 
     # TOOLTIP
-    if not is_low_quality_antialias:
+    if not is_low_quality_antialias and not is_gaussian_blur:
         text_layer, text_alpha = np.dsplit(np.array(text_layer), (3, ))
     else:
         text_layer, _ = np.dsplit(np.array(text_layer), (3, ))

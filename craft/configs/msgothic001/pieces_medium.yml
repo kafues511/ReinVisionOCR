@@ -1,3 +1,5 @@
+# TODO: bold対応
+
 # データセット生成に使用するプロセス数
 max_workers: -1
 
@@ -8,7 +10,7 @@ is_debug_enabled: True
 is_tqdm_enabled: True
 
 # データセットの出力先のディレクトリ
-output_directory: ..\resources\datasets\craft\mtlmr3m\outline_shadow_30
+output_directory: ..\resources\datasets\craft\msgothic001\pieces_medium
 
 # 背景画像のディレクトリ
 background_image_directories: [
@@ -23,8 +25,8 @@ canvas_width: 864
 canvas_height: 416
 
 # フォントとフォントサイズ
-font_path: ..\resources\fonts\mtlmr3m\mtlmr3m.ttf
-font_size: 30
+font_path: ..\resources\fonts\msgothic\msgothic001.ttf
+font_size: 26
 
 # 文字色 (RGB)
 text_color: [255, 255, 255]
@@ -52,11 +54,11 @@ outline_alpha_step: 5
 is_shadow: True
 
 # 影の太さ
-shadow_weight: 0
+shadow_weight: 1
 
 # 影の位置
 # 文字描画位置に対してオフセットで指定します。
-shadow_offset: [2, 2]
+shadow_offset: [1, 1]
 
 # 影色 (RGB)
 shadow_color: [0, 0, 0]
@@ -79,6 +81,9 @@ hue_step: 2
 saturation_min: 10
 saturation_max: 40
 saturation_step: 2
+
+# 縁取りや影をぼかすか
+is_gaussian_blur: False
 
 # 低品質アンチエイリアスを有効にするか
 is_low_quality_antialias: False
@@ -233,7 +238,7 @@ word_image_config:
   is_enable: True
 
   # 画像生成数
-  total: 800
+  total: 400
 
   # n回ごとに括弧を挿入するか
   insert_brackets_every_n_times: 2
@@ -263,7 +268,7 @@ sentence_image_config:
   is_enable: True
 
   # 画像生成数
-  total: 800
+  total: 400
 
   # 文章の長さ
   # 最小文字数と最大文字数を指定します。
@@ -293,7 +298,7 @@ game_image_config:
   is_enable: True
 
   # 画像生成数
-  total: 800
+  total: 400
 
   # テキストの長さ
   # 最小文字数と最大文字数を指定します。

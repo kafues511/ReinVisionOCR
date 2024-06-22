@@ -1,0 +1,367 @@
+# データセット生成に使用するプロセス数
+max_workers: -1
+
+# デバッグの有効性
+is_debug_enabled: True
+
+# tqdmの有効性
+is_tqdm_enabled: True
+
+# データセットの出力先のディレクトリ
+output_directory: ..\resources\datasets\craft\mtlmr3m\karumaruka_small
+
+# 背景画像のディレクトリ
+background_image_directories: [
+  ..\resources\colors,
+  ..\resources\min_chi\全部,
+  ..\resources\min_chi_fanbox\全部,
+  ..\resources\utairo\全部,
+]
+
+# キャンバスサイズ
+canvas_width: 864
+canvas_height: 416
+
+# フォントとフォントサイズ
+font_path: ..\resources\fonts\mtlmr3m\mtlmr3m.ttf
+font_size: 20
+
+# 文字色 (RGB)
+text_color: [255, 255, 255]
+
+# 文字の透明度の範囲
+text_alpha_min: 255
+text_alpha_max: 255
+text_alpha_step: 5
+
+# 縁取りの有効性
+is_outline: False
+
+# 縁取りの太さ
+outline_weight: 0
+
+# 縁取り色 (RGB)
+outline_color: [0, 0, 0]
+
+# 縁取りの透明度の範囲
+outline_alpha_min: 255
+outline_alpha_max: 255
+outline_alpha_step: 5
+
+# 影の有効性
+is_shadow: True
+
+# 影の太さ
+shadow_weight: 0
+
+# 影の位置
+# 文字描画位置に対してオフセットで指定します。
+shadow_offset: [1, 1]
+
+# 影色 (RGB)
+shadow_color: [0, 0, 0]
+
+# 影の透明度の範囲
+shadow_alpha_min: 170
+shadow_alpha_max: 255
+shadow_alpha_step: 5
+
+# 縁取りと影付きに同じ透明度を適用するか
+# 透明度の範囲は影付き(shadow_alpha_min/max/step)から決定します。
+is_apply_same_alpha: False
+
+# 文字色の色相の範囲
+hue_min: 0
+hue_max: 360
+hue_step: 2
+
+# 文字色の彩度の範囲
+saturation_min: 10
+saturation_max: 40
+saturation_step: 2
+
+# 縁取りや影をぼかすか
+is_gaussian_blur: False
+
+# 低品質アンチエイリアスを有効にするか
+is_low_quality_antialias: False
+
+# 鉤括弧や隅付きなどの括弧類
+# 括弧の他に頻出文字列の挿入機能としても使用しています。
+# 文字列の前後に結合されます。
+brackets_list: [
+  ["「", "」"],
+  ["『", "』"],
+  ["【", "】"],
+  ["“", "”"],
+  ["‘", "’"],
+  ["＜", "＞"],
+  ["（", "）"],
+  ["", "。"],
+  ["", "、"],
+  ["───", ""],
+  ["━━━", ""],
+  ["", "───"],
+  ["", "━━━"],
+  ["", "───。"],
+  ["", "━━━。"],
+]
+
+# 単語や文章の途中に挿入するテキストリスト
+# ひらがなやひらがな小文字の連続性は意図的にデータを含めなくとも安定した検出が出来ています。
+# 記号系は精度が芳しくないためデータセットに含めています。
+custom_text_list: [
+  "。",
+  "、",
+  "……",
+  "………",
+  "…………",
+  "……………",
+  "………………",
+  "…………………",
+  "ーー",
+  "ーーー",
+  "ーーーー",
+  "ーーーーー",
+  "ーーーーーー",
+  "ーーーーーーー",
+  "～～",
+  "～～～",
+  "～～～～",
+  "～～～～～",
+  "～～～～～～",
+  "～～～～～～～",
+  "――",
+  "―――",
+  "――――",
+  "―――――",
+  "――――――",
+  "―――――――",
+  "───",
+  "────",
+  "━━━",
+  "━━━━",
+]
+
+# 生成文字設定
+#
+# 第1引数: 生成文字列 or テキストファイルの絶対パス
+#
+# 第2引数: repeat数
+#
+# 生成比率は漢字とそれ以外で1:3ぐらいが理想的
+#
+character_parameters: [
+  # ひらがな（濁音と半濁音を除く）
+  [
+    あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん,
+    100,
+  ],
+
+  # ひらがな小文字
+  [
+    ぁぃぅぇぉっゃゅょゎゕゖ,
+    180,
+  ],
+
+  # ひらがな（濁音と半濁音のみ）
+  [
+    がぎぐげござじずぜぞだぢづでどばびぶべぼゔぱぴぷぺぽ,
+    70,
+  ],
+
+  # カタカナ（濁音と半濁音を除く）
+  [
+    アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン・ー,
+    100,
+  ],
+
+  # カタカナ小文字
+  [
+    ァィゥェォッャュョヮヵヶ,
+    180,
+  ],
+
+  # カタカナ（濁音と半濁音のみ）
+  [
+    ガギグゲゴザジズゼゾダヂヅデドバビブベボヴヷヸヹヺパピプペポ,
+    70,
+  ],
+
+  # 数字
+  [
+    ０１２３４５６７８９ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ Ⅵ Ⅶ Ⅷ Ⅸ Ⅹ,
+    50,
+  ],
+
+  # 英字（大文字）
+  [
+    ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ,
+    80,
+  ],
+
+  # 英字（小文字）
+  [
+    ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ,
+    200,
+  ],
+
+  # 記号など
+  [
+    ＄￥＋－―＠；：％＆＝’‘／！？、。…※＊＃“”～♪゛「」【】『』［］≦≧《》｛｝＜＞（）÷×☆★◇◆△▲▽▼□■○●↑↓→←．π㎝α℃々,
+    60,
+  ],
+  # 常用漢字
+  [
+    ..\resources\codes\常用漢字.txt,
+    1,
+  ],
+
+  # 常用外漢字（人名用漢字）
+  [
+    ..\resources\codes\常用外漢字（人名用漢字）.txt,
+    1,
+  ],
+
+  # 常用外漢字（人名用漢字以外）
+  [
+    ..\resources\codes\常用外漢字（人名用漢字以外）.txt,
+    1,
+  ],
+]
+
+# 単語画像設定
+word_image_config:
+  # 画像生成の有効性
+  is_enable: True
+
+  # 画像生成数
+  total: 400
+
+  # n回ごとに括弧を挿入するか
+  insert_brackets_every_n_times: 2
+
+  # n回ごとにカスタムテキストを挿入するか
+  insert_custom_text_every_n_times: 10
+
+  # n回ごとにランダムカラーを使用するか
+  use_random_color_every_n_times: 10
+
+  # 単語の長さ
+  # 最小文字数と最大文字数を指定します。
+  word_length_min: 2
+  word_length_max: 5
+  word_length_step: 1
+
+  # 単語の最大プロット数
+  max_plots: 128
+
+  # 単語をプロットした領域の余白サイズ
+  word_margin_width: 8
+  word_margin_height: 8
+
+# 文章画像設定
+sentence_image_config:
+  # 画像生成の有効性
+  is_enable: True
+
+  # 画像生成数
+  total: 400
+
+  # 文章の長さ
+  # 最小文字数と最大文字数を指定します。
+  sentence_length_min: 8
+  sentence_length_max: 32
+  sentence_length_step: 1
+
+  # n回ごとに括弧を挿入するか
+  insert_brackets_every_n_times: 10
+
+  # n回ごとにカスタムテキストを挿入するか
+  insert_custom_text_every_n_times: 10
+
+  # n回ごとにランダムカラーを使用するか
+  use_random_color_every_n_times: 10
+
+  # 文章の最大プロット数
+  max_plots: 64
+
+  # 文章をプロットした領域の余白サイズ
+  sentence_margin_width: 8
+  sentence_margin_height: 8
+
+# ゲーム画像設定
+game_image_config:
+  # 画像生成の有効性
+  is_enable: True
+
+  # 画像生成数
+  total: 400
+
+  # テキストの長さ
+  # 最小文字数と最大文字数を指定します。
+  text_length_min: 5
+  text_length_max: 80
+  text_length_step: 1
+
+  # 行間サイズ
+  spacing: 8
+
+  # n回ごとに括弧を挿入するか
+  insert_brackets_every_n_times: 2
+
+  # n回ごとにカスタムテキストを挿入するか
+  insert_custom_text_every_n_times: 2
+
+  # n回ごとにランダムカラーを使用するか
+  use_random_color_every_n_times: 10
+
+  # 背景サイズ(横)
+  # 最小幅、最大幅、ステップ幅
+  # 最小幅がテキストの横幅より小さい場合はテキストの横幅が最小幅になります。
+  background_width_min: 512
+  background_width_max: 864
+  background_width_step: 16
+
+  # 背景サイズ(高さ)
+  # 最小の高さ、最大の高さ、ステップ幅
+  # 最小の高さがテキストの高さ(行数)より小さい場合はテキストの高さ(行数)が最小の高さになります。
+  background_height_min: 0
+  background_height_max: 224
+  background_height_step: 16
+
+  # テキストボックスの色相の範囲
+  # 最小色相、最大色相、色相の移動幅
+  text_box_hue_min: 0
+  text_box_hue_max: 360
+  text_box_hue_step: 2
+
+  # テキストボックスの彩度の範囲
+  # 最小彩度、最大彩度、彩度の移動幅
+  text_box_saturation_min: 10
+  text_box_saturation_max: 40
+  text_box_saturation_step: 2
+
+  # テキストボックス画像のディレクトリ
+  text_box_image_directories: [
+    ..\resources\meira,
+  ]
+
+  # n回ごとにテキストボックス画像を使用するか
+  use_text_box_image_every_n_times: 2
+
+  # テキストボックス上部の透明度の範囲
+  # 最小透明度、最大透明度、移動幅
+  text_box_top_alpha_min: 0
+  text_box_top_alpha_max: 50
+  text_box_top_alpha_step: 5
+
+  # テキストボックス下部の透明度の範囲
+  # 透明度は上部から下部にかけて線形グラデーションします。
+  # 最小透明度、最大透明度、移動幅
+  text_box_bottom_alpha_min: 150
+  text_box_bottom_alpha_max: 200
+  text_box_bottom_alpha_step: 5
+
+  # キャンバスの色
+  canvas_color: [128, 128, 128]

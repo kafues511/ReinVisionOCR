@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 import math
 
-from datagen.image_generator_base import *
-from datagen.word_image_generator import generate_word_image
+from datagen.generate_base import *
+from datagen.generate_word import generate_word_image
 
 
 @dataclass
