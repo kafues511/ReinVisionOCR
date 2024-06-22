@@ -4,8 +4,8 @@ from tqdm import tqdm
 from reinlib.types.rein_stage_type import StageType
 from reinlib.utility.rein_dataset_generator import DatasetGeneratorAbstract
 
-from datagen.image_generator import GenerateConfig
-from datagen.character_image_generator import generate_character_image
+from datagen.generate_impl import GenerateConfig
+from datagen.generate_character import generate_character_image
 
 
 __all__ = [

@@ -140,23 +140,23 @@ class GenerateConfig(GenerateConfigBase):
         xrange = character_smallest_bbox.xmin + (width + padding - character_smallest_bbox.xmax)
         yrange = character_smallest_bbox.ymin + (height + padding - character_smallest_bbox.ymax)
 
+        # NOTE: 「＝」「ー」などのオフセット幅が広いとギリギリまで
+        xstart = 5 if xrange > 10 else 0
+        ystart = 5 if yrange > 10 else 0
+
         # オフセット回数
-        xoffsets = xrange // character_offset_step
-        yoffsets = yrange // character_offset_step
+        xoffsets = (xstart * -2 + xrange) // character_offset_step
+        yoffsets = (ystart * -2 + yrange) // character_offset_step
 
         # オフセットパターンを作成
         offsets = [
             Int2(
-                -character_smallest_bbox.xmin + xoffset * character_offset_step,
-                -character_smallest_bbox.ymin + yoffset * character_offset_step,
+                xstart + -character_smallest_bbox.xmin + xoffset * character_offset_step,
+                ystart + -character_smallest_bbox.ymin + yoffset * character_offset_step,
             )
             for yoffset in range(yoffsets)
             for xoffset in range(xoffsets)
         ]
-
-        # 原点描画は必須
-        if (0, 0) not in offsets:
-            offsets.append(Int2.zero())
 
         return tuple(offsets)
 
