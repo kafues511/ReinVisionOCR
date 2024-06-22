@@ -1,5 +1,5 @@
 from pathlib import Path
-import math
+import cv2
 
 import torch
 from torch import Tensor, optim
@@ -39,6 +39,7 @@ class CharSegDataset(Dataset):
         dataset_dirs:list[Path],
     ) -> None:
         self.transform = transforms.Compose([
+            transforms.ToTensor(),
             transforms.Normalize(mean=self.MEAN_NORM, std=self.STD_NORM),
         ])
 
@@ -62,7 +63,9 @@ class CharSegDataset(Dataset):
     def __getitem__(self, index:int) -> tuple[Tensor, Tensor]:
         image_path, label_path = self.image_n_label_paths[index]
 
-        image = read_image(image_path, ImageReadMode.RGB) / 255.0
+        image = cv2.imread(image_path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         image = self.transform(image)
 
         label = read_image(label_path, ImageReadMode.GRAY) / 255.0
