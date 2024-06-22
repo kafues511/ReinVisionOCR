@@ -1,0 +1,162 @@
+# データセット生成に使用するプロセス数
+max_workers: -1
+
+# デバッグの有効性
+is_debug_enabled: True
+
+# tqdmの有効性
+is_tqdm_enabled: True
+
+# データセットの出力先のディレクトリ
+output_directory: ..\resources\datasets\charseg\msgothic001\erondo02_medium
+
+# フォントとフォントサイズ
+font_path: ..\resources\fonts\msgothic\msgothic001.ttf
+font_size: 24
+
+# 背景画像のディレクトリ
+background_image_directories: [
+  ..\resources\colors,
+  ..\resources\min_chi\全部,
+  ..\resources\min_chi_fanbox\全部,
+  ..\resources\utairo\全部,
+]
+
+# 文字色 (RGB)
+text_color: [255, 255, 255]
+
+# 文字の透明度の範囲
+text_alpha_min: 255
+text_alpha_max: 255
+text_alpha_step: 5
+
+# 縁取りの有効性
+is_outline: True
+
+# 縁取りの太さ
+outline_weight: 2
+
+# 縁取り色 (RGB)
+outline_color: [80, 80, 80]
+
+# 縁取りの透明度の範囲
+outline_alpha_min: 170
+outline_alpha_max: 255
+outline_alpha_step: 5
+
+# 影の有効性
+is_shadow: True
+
+# 影の太さ
+shadow_weight: 2
+
+# 影の位置
+# 文字描画位置に対してオフセットで指定します。
+shadow_offset: [0, 3]
+
+# 影色 (RGB)
+shadow_color: [0, 0, 0]
+
+# 影の透明度の範囲
+shadow_alpha_min: 10
+shadow_alpha_max: 50
+shadow_alpha_step: 5
+
+# 縁取りと影付きに同じ透明度を適用するか
+# 透明度の範囲は影付き(shadow_alpha_min/max/step)から決定します。
+is_apply_same_alpha: False
+
+# 文字色の色相の範囲
+hue_min: 0
+hue_max: 360
+hue_step: 2
+
+# 文字色の彩度の範囲
+saturation_min: 10
+saturation_max: 40
+saturation_step: 2
+
+# 余白サイズ
+# 最小幅、最大幅、ステップ幅
+padding_min: 0
+padding_max: 2
+padding_step: 2
+
+# 文字描画位置のオフセット幅
+character_offset_step: 2
+
+# 背景画像あたりに生成する文字数
+characters_per_image: 512
+
+# 生成文字設定
+# - elements: 生成文字もしくは生成文字を含んだテキストファイルパス
+# - n_repeat: 生成の繰り返し数
+# - 漢字が圧倒的に多いため、分布を平均化させるためにそれ以外のn_repeatを調整する必要があります。
+character_parameters: [
+  {
+    # ひらがな（濁音と半濁音を除く）
+    elements: あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん,
+    n_repeat: 1000,
+  },
+  {
+    # ひらがな小文字
+    elements: ぁぃぅぇぉっゃゅょゎゕゖ,
+    n_repeat: 200,
+  },
+  {
+    # ひらがな（濁音と半濁音のみ）
+    elements: がぎぐげござじずぜぞだぢづでどばびぶべぼゔぱぴぷぺぽ,
+    n_repeat: 1000,
+
+  },
+  {
+    # カタカナ（濁音と半濁音を除く）
+    elements: アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン・ー,
+    n_repeat: 1000,
+  },
+  {
+    # カタカナ小文字
+    elements: ァィゥェォッャュョヮヵヶ,
+    n_repeat: 200,
+  },
+  {
+    # カタカナ（濁音と半濁音のみ）
+    elements: ガギグゲゴザジズゼゾダヂヅデドバビブベボヴヷヸヹヺパピプペポ,
+    n_repeat: 1000,
+  },
+  {
+    # 数字
+    elements: ０１２３４５６７８９ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ Ⅵ Ⅶ Ⅷ Ⅸ Ⅹ,
+    n_repeat: 150,
+  },
+  {
+    # 英字（大文字）
+    elements: ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ,
+    n_repeat: 200,
+  },
+  {
+    # 英字（小文字）
+    elements: ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ,
+    n_repeat: 200,
+  },
+  {
+    # 記号など
+    elements: ＄￥＋－―＠；：％＆＝’‘／！？、。…※＊＃“”～♪゛「」【】『』［］≦≧《》｛｝＜＞（）÷×☆★◇◆△▲▽▼□■○●↑↓→←．π㎝α℃々,
+    n_repeat: 200,
+  },
+  {
+    # 常用漢字
+    elements: ..\resources\codes\常用漢字.txt,
+    n_repeat: 1,
+  },
+  {
+    # 常用外漢字（人名用漢字）
+    elements: ..\resources\codes\常用外漢字（人名用漢字）.txt,
+    n_repeat: 1,
+  },
+  {
+    # 常用外漢字（人名用漢字以外）
+    elements: ..\resources\codes\常用外漢字（人名用漢字以外）.txt,
+    n_repeat: 1,
+  },
+]

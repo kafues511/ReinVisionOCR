@@ -1,1 +1,1 @@
-from datagen.dataset_generator import *
+from datagen.generator import *
