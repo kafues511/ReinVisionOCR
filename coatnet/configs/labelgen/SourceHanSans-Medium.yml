@@ -7,7 +7,7 @@ output_directory: ..\resources\labels
 is_new_create: True
 
 # フォントパス
-font_path: ..\resources\fonts\SourceHanSans\SourceHanSans-Bold.otf
+font_path: ..\resources\fonts\SourceHanSans\SourceHanSans-Medium.otf
 
 # 識字から除外する文字
 # - 異体字を識字から除外させるべきかは検討中です。
@@ -869,7 +869,11 @@ similar_character_groups: [
     # 漢字のいち
     # ハイフンの全角と記号のマイナス
     # ダッシュ記号
-    childs: ["一", "－", "―"],
+    childs: [
+      "一",
+      "－",
+      #"―",  ダッシュ記号が細すぎて他と一緒にすると＝（イコール）に誤分類されることがある
+    ],
   },
   {
     # カタカナのか
