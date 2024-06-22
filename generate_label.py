@@ -7,5 +7,6 @@ if __name__ == "__main__":
     my_app(
         #r"configs\labelgen\mtlmr3m.yml",
         #r"configs\labelgen\msgothic001.yml",
-        #r"configs\labelgen\source-han-sans-bold.yml",
+        #r"configs\labelgen\SourceHanSans-Bold.yml",
+        #r"configs\labelgen\SourceHanSans-Medium.yml",
     )

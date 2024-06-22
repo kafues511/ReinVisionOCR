@@ -8,15 +8,15 @@ is_debug_enabled: True
 is_tqdm_enabled: True
 
 # データセットの出力先のディレクトリ
-output_directory: ..\resources\datasets\coatnet\source-han-sans-bold
+output_directory: ..\resources\datasets\coatnet\SourceHanSans-Medium
 
 # フォントとフォントサイズ
-font_path: ..\resources\fonts\source-han-sans\SourceHanSans-Bold.otf
+font_path: ..\resources\fonts\SourceHanSans\SourceHanSans-Medium.otf
 font_size_list: [22, 26, 30, 34, 38, 42]
 
 # 文字情報のパス
 # - 生成する文字列や画像文字、除外する文字やラベル値の情報が詰まっています。
-character_database_path: ..\resources\labels\SourceHanSans-Bold.cdb
+character_database_path: ..\resources\labels\SourceHanSans-Medium.cdb
 
 # 余白サイズ
 # 最小幅、最大幅、ステップ幅

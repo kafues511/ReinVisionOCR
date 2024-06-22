@@ -2,21 +2,21 @@
 max_workers: -1
 
 # デバッグの有効性
-is_debug_enabled: True
+is_debug_enabled: False
 
 # tqdmの有効性
 is_tqdm_enabled: True
 
 # データセットの出力先のディレクトリ
-output_directory: ..\resources\datasets\coatnet\msgothic001
+output_directory: ..\resources\datasets\coatnet\SourceHanSans-Bold
 
 # フォントとフォントサイズ
-font_path: ..\resources\fonts\msgothic\msgothic001.ttf
-font_size_list: [24, 26, 30, 34, 38, 42]
+font_path: ..\resources\fonts\SourceHanSans\SourceHanSans-Bold.otf
+font_size_list: [22, 26, 30, 34, 38, 42]
 
 # 文字情報のパス
 # - 生成する文字列や画像文字、除外する文字やラベル値の情報が詰まっています。
-character_database_path: ..\resources\labels\msgothic001.cdb
+character_database_path: ..\resources\labels\SourceHanSans-Bold.cdb
 
 # 余白サイズ
 # 最小幅、最大幅、ステップ幅
